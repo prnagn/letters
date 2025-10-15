@@ -1,0 +1,59 @@
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#knife {
+    position: fixed;
+    left: 30%;
+    top: 30%;
+    transform-origin: 0 50%;
+
+    animation-name: chopping;
+    animation-duration: 0.8s;
+}
+
+#image {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 100% 50%;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+}
+
+@keyframes chopping {
+    0% {
+        transform: rotate(0deg);
+    } 50% {
+        transform: rotate(20deg);
+    } 100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes chopped {
+    0% {
+        transform: scale(100%, 100%);
+    } 50% {
+        transform: scale(90%, 100%);
+    } 100% {
+        transform: scale(100%, 100%);
+    }
+}
+
+.knifeAnimation {
+    animation-name: chopped;
+    animation: 0.8s;
+}

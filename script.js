@@ -4,7 +4,7 @@ const words = {
     'c': 'carrot',
     'd': 'durian',
     'e': 'eggplant',
-    'f': 'fat',
+    'f': 'fly',
     'g': 'garlic',
     'i': 'ice',
     'j': 'jalapeno',
@@ -16,21 +16,26 @@ const words = {
     't': 'tomato',
     'v': 'violin',
     'w': 'watermelon',
+    'x': 'xylophone',
+    'y': 'yee',
+    'z': 'zero',
 };
 
 /** get DOM elements */
 const result = document.getElementById("result");
 const image = document.getElementById("image");
+const knife = document.getElementById("knife");
 
 /** audio setting */
-const chop = new Audio(''); // chop sound
-const done = new Audio(''); // enter or space
-const waste = new Audio(''); // backspace
+// const chop = new Audio(''); // chop sound
+// const drag = new Audio(''); // enter or space
+// const waste = new Audio(''); // backspace
 
 /** initialize */
 let input = '';
 let currentword = '';
 
+/** add DOM elements */
 function addDomElement(tag, attrs) {
     const el = document.createElement(tag);
     if (attrs) {
@@ -46,11 +51,20 @@ function addDomElement(tag, attrs) {
     return el;
 }
 
+/** move the knife */
+function cut() {
+    knife.classList.add("knifeAnimation");
+    knife.addEventListener("animationend", () => {
+        knife.classList.remove("knifeAnimation");
+    }, { once: true });
+}
+
 document.addEventListener("keydown", function(e) {
     console.log("Key pressed: ", e.key);
     switch (e.key) {
         case "Backspace":
             // 음식을 버림
+            // waste.play();
 
             // 초기화 작업
             input = '';
@@ -61,7 +75,6 @@ document.addEventListener("keydown", function(e) {
             break;
         case "Enter":
         case " ":
-            // 완성되면 넘어감
             if (input === currentword) {
                 // 초기화 작업
                 input = '';
@@ -69,7 +82,9 @@ document.addEventListener("keydown", function(e) {
                 while (result.firstChild) {
                     result.removeChild(result.firstChild);
                 }
+                // drag.play();
             } else {
+                cut();
                 // 헛손질
             }
             break;
@@ -96,11 +111,12 @@ document.addEventListener("keydown", function(e) {
                 console.log('currentword: ', currentword);
                 image.src = './image/' + currentword + '.png';
             }
+            cut();
             if (currentword.startsWith(input)) {
                 if (currentword[input.length] === e.key) {
                     input = input + e.key.toLowerCase();
                     addDomElement("span", { text: e.key.toLowerCase() });
-                    // sound play
+                    // chop.play();
                 } else {
                     // 헛손질
                 }
