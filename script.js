@@ -53,6 +53,7 @@ document.addEventListener("keydown", function(e) {
             if (input === currentword) {
                 // 초기화 작업
                 input = '';
+                image.src = '';
                 while (result.firstChild) {
                     result.removeChild(result.firstChild);
                 }
@@ -69,6 +70,7 @@ document.addEventListener("keydown", function(e) {
             if (input == '') {
                 currentword = words[e.key]; // 키값으로 단어 찾음
                 console.log('currentword: ', currentword);
+                image.src = './image/' + currentword + '.png';
             }
             if (currentword.startsWith(input)) {
                 if (currentword[input.length] === e.key) {
