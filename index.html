@@ -5,62 +5,7 @@
         <title>Letters</title>
     </head>
     <body>
-        <h1>Letters: </h1>
-        <p>We write text from.</p>
-        <div id="output"></div>
-        <script>
-            const outputElem = document.getElementById("output");
-
-            function addDomElement(tag, attrs) {
-                const el = document.createElement(tag);
-                if (attrs) {
-                    for (const k in attrs) {
-                        if (k === "text") {
-                            el.textContent = attrs[k];
-                        } else {
-                            el.setAttribute(k, attrs[k]);
-                        }
-                    }
-                }
-                outputElem.appendChild(el);
-                return el;
-            };
-
-            function playSound(url) {
-                const audio = new Audio(url);
-                audio.play();
-            };
-
-            document.addEventListener("keydown", function(event) {
-                console.log("Key pressed:", event.key);
-                if (event.key === "Backspace") {
-                    //outputElem.textContent = outputElem.textContent.slice(0, -1);
-                    if (outputElem.lastChild) {
-                        outputElem.removeChild(outputElem.lastChild);
-                    }
-                } else if (event.key ==="c" || event.key === "C") {
-                    addDomElement("img", { src: "https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyeTcyNHM4b3Mya3pmczY5MDBldW4zcDE2dGFsYjFvdjBka2RuNGRvdiZlcD12MV9naWZzX3NlYXJjaCZjdT1n/3vcHdyb75qRIA/200w.gif" });
-                } else if (event.key === "v" || event.key === "V") {
-                    addDomElement("video", {
-                        src: "https://i.imgur.com/Pj87n9Q.mp4",
-                        width: "300",
-                        height: "300",
-                        autoplay: "true",
-                        muted: "",
-                        controls: ""
-                    });
-                } else if (event.key === "s" || event.key === "S") {
-                    playSound("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
-                    addDomElement("span", {text: "{sound played}"});
-                } else if (event.key === "d" || event.key === "D") {
-                    //outputElem.textContent += "BARK! ";
-                    addDomElement("span", {text: "BARK! "});
-                } else {
-                    //outputElem.textContent += event.key;
-                    addDomElement("span", {text: event.key});
-                }
-            });
-            
-        </script>
+        <input id="textInput" type="text" placeholder="단어를 입력하세요" />
+        <script src="script.js"></script>
     </body>
 </html>
