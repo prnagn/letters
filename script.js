@@ -4,6 +4,7 @@ const words = {
     'c': 'carrot',
     'd': 'durian',
     'e': 'eggplant',
+    'f': 'fat',
     'g': 'garlic',
     'i': 'ice',
     'j': 'jalapeno',
@@ -21,8 +22,12 @@ const words = {
 const result = document.getElementById("result");
 const image = document.getElementById("image");
 
+/** audio setting */
+const chop = new Audio(''); // chop sound
+const done = new Audio(''); // enter or space
+const waste = new Audio(''); // backspace
+
 /** initialize */
-const audio = new Audio('');
 let input = '';
 let currentword = '';
 
@@ -46,6 +51,13 @@ document.addEventListener("keydown", function(e) {
     switch (e.key) {
         case "Backspace":
             // 음식을 버림
+
+            // 초기화 작업
+            input = '';
+            image.src = '';
+            while (result.firstChild) {
+                result.removeChild(result.firstChild);
+            }
             break;
         case "Enter":
         case " ":
@@ -65,6 +77,18 @@ document.addEventListener("keydown", function(e) {
         case "CapsLock":
         case "Control":
         case "Alt":
+        case "F1":
+        case "F2":
+        case "F3":
+        case "F4":
+        case "F5":
+        case "F6":
+        case "F7":
+        case "F8":
+        case "F9":
+        case "F10":
+        case "F11":
+        case "F12":
             break;
         default:
             if (input == '') {
