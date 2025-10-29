@@ -6,14 +6,19 @@ const words = {
     'e': 'eggplant',
     'f': 'fly',
     'g': 'garlic',
+    'h': 'halloween',
     'i': 'ice',
     'j': 'jalapeno',
     'l': 'lemon',
     'm': 'mushroom',
+    'n': 'nut',
     'o': 'onion',
     'p': 'peach',
+    'q': 'quince',
     'r': 'radish',
+    's': 'strawberry',
     't': 'tomato',
+    'u': 'umbrella',
     'v': 'violin',
     'w': 'watermelon',
     'x': 'xylophone',
@@ -70,7 +75,6 @@ document.addEventListener("keydown", function(e) {
             // 음식을 버림
             // waste.play();
 
-            // 초기화 작업
             input = '';
             image.src = '';
             while (result.firstChild) {
@@ -80,7 +84,6 @@ document.addEventListener("keydown", function(e) {
         case "Enter":
         case " ":
             if (input === currentword) {
-                // 초기화 작업
                 input = '';
                 image.src = '';
                 while (result.firstChild) {
@@ -101,6 +104,7 @@ document.addEventListener("keydown", function(e) {
             break;
         case "Shift":
         case "CapsLock":
+            break;
         case "Control":
             window.location.href = './result/index.html';
             break;
@@ -131,9 +135,7 @@ document.addEventListener("keydown", function(e) {
                     input = input + e.key.toLowerCase();
                     addDomElement(result, "p", { text: e.key.toLowerCase() });
                     // chop.play();
-                } else {
-                    // 헛손질
-                }
+                } // 헛손질은 아무 일도 일어나지 않는것인가
             }
             console.log(input);
             break;

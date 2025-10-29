@@ -1,3 +1,7 @@
+body {
+    background-color: #E8CBA8;
+}
+
 #title {
     display: flex;
     justify-content: center;
@@ -34,15 +38,15 @@
     position: fixed;
     left: 0%;
     top: 0%;
-    background-color: black;
-
+    background-color: white;
     display: flex;
+    flex-direction: column-reverse;
     justify-self: center;
     align-items: center;
     
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
-    color: white;
+    color: black;
 }
 
 @keyframes chopping {
