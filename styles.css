@@ -10,9 +10,6 @@
     left: 30%;
     top: 30%;
     transform-origin: 0 50%;
-
-    animation-name: chopping;
-    animation-duration: 0.8s;
 }
 
 #image {
@@ -31,6 +28,21 @@
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
+}
+
+#saving {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    background-color: black;
+
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 @keyframes chopping {
@@ -54,6 +66,9 @@
 }
 
 .knifeAnimation {
-    animation-name: chopped;
-    animation: 0.8s;
+    animation: chopping 0.8s ease;
+}
+
+.vegAnimation {
+    animation: chopped 0.8s ease;
 }

@@ -25,6 +25,7 @@ const words = {
 const result = document.getElementById("result");
 const image = document.getElementById("image");
 const knife = document.getElementById("knife");
+const saving = document.getElementById("saving");
 
 /** audio setting */
 // const chop = new Audio(''); // chop sound
@@ -34,9 +35,10 @@ const knife = document.getElementById("knife");
 /** initialize */
 let input = '';
 let currentword = '';
+let save = {}
 
 /** add DOM elements */
-function addDomElement(tag, attrs) {
+function addDomElement(parent, tag, attrs) {
     const el = document.createElement(tag);
     if (attrs) {
         for (const k in attrs) {
@@ -47,12 +49,14 @@ function addDomElement(tag, attrs) {
             }
         }
     }
-    result.appendChild(el);
+    parent.appendChild(el);
     return el;
 }
 
 /** move the knife */
 function cut() {
+    knife.classList.remove("knifeAnimation");
+    void knife.offsetWidth;
     knife.classList.add("knifeAnimation");
     knife.addEventListener("animationend", () => {
         knife.classList.remove("knifeAnimation");
@@ -83,6 +87,13 @@ document.addEventListener("keydown", function(e) {
                     result.removeChild(result.firstChild);
                 }
                 // drag.play();
+                if (currentword in save) {
+                    save[currentword] = save[currentword] + 1;
+                } else {
+                    save[currentword] = 1;
+                }
+                addDomElement(saving, 'p', {text: currentword});
+                console.log(save);
             } else {
                 cut();
                 // 헛손질
@@ -91,6 +102,8 @@ document.addEventListener("keydown", function(e) {
         case "Shift":
         case "CapsLock":
         case "Control":
+            window.location.href = './result/index.html';
+            break;
         case "Alt":
         case "F1":
         case "F2":
@@ -111,11 +124,12 @@ document.addEventListener("keydown", function(e) {
                 console.log('currentword: ', currentword);
                 image.src = './image/' + currentword + '.png';
             }
+
             cut();
             if (currentword.startsWith(input)) {
                 if (currentword[input.length] === e.key) {
                     input = input + e.key.toLowerCase();
-                    addDomElement("span", { text: e.key.toLowerCase() });
+                    addDomElement(result, "p", { text: e.key.toLowerCase() });
                     // chop.play();
                 } else {
                     // 헛손질
