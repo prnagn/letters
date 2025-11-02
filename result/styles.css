@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Memoment Cat";
+    src: url('../font/memomentKkukkkuk.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'RixInuaridurine';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: #E8CBA8;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+h1 {
+    color: #9B5740;
+    font-family: "RixInuaridurine";
+    font-size: 36px;
+}
+
+h2 {
+    color: #4B2E14;
+    margin: 0px;
+
+    font-size: 26px;
+    font-family: "Memoment Cat";
+}
+
+h3 {
+    color: #9B5740;
+
+    font-family: "RixInuaridurine";
+    font-size: 24px;
+}
+
+button {
+    color: #E8CBA8;
+    font-family: "Memoment Cat";
+    font-size: 24px;
+
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 20px;
+    background-color: #9B5740;
+    margin-top: 30px;
+}
+
+button:hover {
+    background-color: #4B2E14;
+}
+
+#saving {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    font-family: "Memoment Cat";
+    font-size: 16px;
+    color: #4B2E14;
+}
+
+#images {
+    
+}

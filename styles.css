@@ -1,5 +1,22 @@
+@font-face {
+    font-family: "Memoment Cat";
+    src: url('./font/memomentKkukkkuk.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'RixInuaridurine';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
 body {
     background-color: #E8CBA8;
+}
+
+h1 {
+    color: #9B5740;
+    font-family: "Memoment Cat";
 }
 
 #title {
@@ -16,6 +33,18 @@ body {
     transform-origin: 0 50%;
 }
 
+#cuttingBoard {
+    position: fixed;
+}
+
+#trash {
+    position: fixed;
+}
+
+#bowl {
+    position: fixed;
+}
+
 #image {
     position: fixed;
     left: 50%;
@@ -28,10 +57,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #4B2E14;
     
-    font-size: 30px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 48px;
+    font-family: 'RixInuaridurine';
     letter-spacing: 2px;
+}
+
+#timer {
+    position: fixed;
+    left: 100%;
+    top: 0%;
+    transform: translate(-200%, 0%);
+
+    font-size: 20px;
+    font-family: "Memoment Cat";
+    color: #4B2E14;
 }
 
 #saving {
@@ -44,7 +85,7 @@ body {
     justify-self: center;
     align-items: center;
     
-    font-size: 16px;
+    font-size: 12px;
     font-family: 'Courier New', Courier, monospace;
     color: black;
 }
@@ -69,10 +110,34 @@ body {
     }
 }
 
+@keyframes save {
+    0% {
+        transform: translate(-50%, -50%) translate(0%, 0%);
+    } 100% {
+        transform: translate(-50%, -50%) translate(150%, 0%);
+    }
+}
+
+@keyframes waste {
+    0% {
+        transform: translate(-50%, -50%) translate(0%, 0%);
+    } 100% {
+        transform: translate(-50%, -50%) translate(-150%, 0%);
+    }
+}
+
 .knifeAnimation {
     animation: chopping 0.8s ease;
 }
 
 .vegAnimation {
     animation: chopped 0.8s ease;
+}
+
+.saveAnimation {
+    animation: save 0.5s ease;
+}
+
+.wasteAnimation {
+    animation: waste 0.5s ease;
 }

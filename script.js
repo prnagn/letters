@@ -30,6 +30,7 @@ const words = {
 const result = document.getElementById("result");
 const image = document.getElementById("image");
 const knife = document.getElementById("knife");
+const timer = document.getElementById("timer");
 const saving = document.getElementById("saving");
 
 /** audio setting */
@@ -40,7 +41,11 @@ const saving = document.getElementById("saving");
 /** initialize */
 let input = '';
 let currentword = '';
-let save = {}
+let save = [];
+
+let time = 30;
+let correctness = 0;
+let incorrecness = 0;
 
 /** add DOM elements */
 function addDomElement(parent, tag, attrs) {
@@ -68,15 +73,35 @@ function cut() {
     }, { once: true });
 }
 
+function saveVeg() {
+    // drag.play();
+    image.classList.remove("saveAnimation");
+    void image.offsetWidth;
+    image.classList.add("saveAnimation");
+    image.addEventListener("animationend", () => {
+        image.classList.remove("saveAnimation");
+        image.src = '';
+    }, { once: true });
+}
+
+function waste() {
+    // waste.play();
+    image.classList.remove("wasteAnimation");
+    void image.offsetWidth;
+    image.classList.add("wasteAnimation");
+    image.addEventListener('animationend', () => {
+        image.classList.remove("wasteAnimation");
+        image.src = '';
+    }, { once: true });
+}
+
 document.addEventListener("keydown", function(e) {
     console.log("Key pressed: ", e.key);
     switch (e.key) {
         case "Backspace":
             // 음식을 버림
-            // waste.play();
-
+            waste();
             input = '';
-            image.src = '';
             while (result.firstChild) {
                 result.removeChild(result.firstChild);
             }
@@ -84,30 +109,22 @@ document.addEventListener("keydown", function(e) {
         case "Enter":
         case " ":
             if (input === currentword) {
+                saveVeg();
                 input = '';
-                image.src = '';
                 while (result.firstChild) {
                     result.removeChild(result.firstChild);
                 }
-                // drag.play();
-                if (currentword in save) {
-                    save[currentword] = save[currentword] + 1;
-                } else {
-                    save[currentword] = 1;
-                }
+                save.push(currentword);
                 addDomElement(saving, 'p', {text: currentword});
                 console.log(save);
             } else {
                 cut();
-                // 헛손질
+                incorrecness += 1;
             }
             break;
         case "Shift":
         case "CapsLock":
-            break;
         case "Control":
-            window.location.href = './result/index.html';
-            break;
         case "Alt":
         case "F1":
         case "F2":
@@ -128,16 +145,39 @@ document.addEventListener("keydown", function(e) {
                 console.log('currentword: ', currentword);
                 image.src = './image/' + currentword + '.png';
             }
-
             cut();
             if (currentword.startsWith(input)) {
                 if (currentword[input.length] === e.key) {
                     input = input + e.key.toLowerCase();
                     addDomElement(result, "p", { text: e.key.toLowerCase() });
                     // chop.play();
-                } // 헛손질은 아무 일도 일어나지 않는것인가
+                    correctness += 1;
+                } else {
+                    // 헛손질
+                    incorrecness += 1;
+                }
             }
             console.log(input);
             break;
     }
+});
+
+const countdown = setInterval(() => {
+    timer.textContent = time;
+    time --;
+    if (time < 0) {
+        clearInterval(countdown);
+        timer.textContent = 'Time over';
+        if (!save) {
+            save = ['null'];
+        }
+        sessionStorage.setItem('savingVeg', JSON.stringify(save));
+        sessionStorage.setItem('correct', correctness / incorrecness);
+        window.location.href = './result/index.html';
+    }
+}, 1000);
+
+window.addEventListener("load", () => {
+    sessionStorage.removeItem("savingVeg"); // 새로고침 시 자동 리셋
+    sessionStorage.removeItem("correct");
 });
