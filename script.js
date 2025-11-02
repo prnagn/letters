@@ -34,9 +34,9 @@ const timer = document.getElementById("timer");
 const saving = document.getElementById("saving");
 
 /** audio setting */
-// const chop = new Audio(''); // chop sound
-// const drag = new Audio(''); // enter or space
-// const waste = new Audio(''); // backspace
+const chop = new Audio('./sound/cut.mp3'); // chop sound
+const drag = new Audio('./sound/slide.mp3'); // enter or space
+const waste = new Audio('./sound/waste.mp3'); // backspace
 
 /** initialize */
 let input = '';
@@ -74,7 +74,7 @@ function cut() {
 }
 
 function saveVeg() {
-    // drag.play();
+    drag.play();
     image.classList.remove("saveAnimation");
     void image.offsetWidth;
     image.classList.add("saveAnimation");
@@ -84,8 +84,8 @@ function saveVeg() {
     }, { once: true });
 }
 
-function waste() {
-    // waste.play();
+function wasteVeg() {
+    waste.play();
     image.classList.remove("wasteAnimation");
     void image.offsetWidth;
     image.classList.add("wasteAnimation");
@@ -100,7 +100,7 @@ document.addEventListener("keydown", function(e) {
     switch (e.key) {
         case "Backspace":
             // 음식을 버림
-            waste();
+            wasteVeg();
             input = '';
             while (result.firstChild) {
                 result.removeChild(result.firstChild);
@@ -150,7 +150,7 @@ document.addEventListener("keydown", function(e) {
                 if (currentword[input.length] === e.key) {
                     input = input + e.key.toLowerCase();
                     addDomElement(result, "p", { text: e.key.toLowerCase() });
-                    // chop.play();
+                    chop.play();
                     correctness += 1;
                 } else {
                     // 헛손질
@@ -172,7 +172,7 @@ const countdown = setInterval(() => {
             save = ['null'];
         }
         sessionStorage.setItem('savingVeg', JSON.stringify(save));
-        sessionStorage.setItem('correct', correctness / incorrecness);
+        sessionStorage.setItem('correct', Math.round(correctness / (correctness + incorrecness) * 100));
         window.location.href = './result/index.html';
     }
 }, 1000);
