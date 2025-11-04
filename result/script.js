@@ -20,24 +20,24 @@ console.log(saving);
 console.log(correctness);
 accuracy.textContent = 'accuracy: ' + correctness + '%';
 
-const vC = new Audio('../sound/violin_c.mp3');
-const vD = new Audio('../sound/violin_d.mp3');
 const vE = new Audio('../sound/violin_e.mp3');
-const vF = new Audio('../sound/violin_f.mp3');
-const vG = new Audio('../sound/violin_g.mp3');
+const vGb = new Audio('../sound/violin_gb.mp3');
+const vAb = new Audio('../sound/violin_ab.mp3');
 const vA = new Audio('../sound/violin_a.mp3');
 const vB = new Audio('../sound/violin_b.mp3');
+const vDED = new Audio('../sound/violin_ded.mp3');
+const vB1 = new Audio('../sound/violin_b1.mp3');
 const vnotes = [
-    vA, vB, vC, vD, vE, vF, vG
+    vE, vGb, vAb, vA, vB, vB1
 ];
 
-const xC = new Audio('../sound/violin_c.mp3');
-const xD = new Audio('../sound/violin_d.mp3');
-const xE = new Audio('../sound/violin_e.mp3');
-const xF = new Audio('../sound/violin_f.mp3');
-const xG = new Audio('../sound/violin_g.mp3');
-const xA = new Audio('../sound/violin_a.mp3');
-const xB = new Audio('../sound/violin_b.mp3');
+const xC = new Audio('../sound/xylophone_c.mp3');
+const xD = new Audio('../sound/xylophone_d.mp3');
+const xE = new Audio('../sound/xylophone_e.mp3');
+const xF = new Audio('../sound/xylophone_f.mp3');
+const xG = new Audio('../sound/xylophone_g.mp3');
+const xA = new Audio('../sound/xylophone_a.mp3');
+const xB = new Audio('../sound/xylophone_b.mp3');
 const xnotes = [
     xA, xB, xC, xD, xE, xF, xG
 ];
@@ -285,7 +285,7 @@ document.addEventListener('keydown', (e) => {
             violinEffect();
         }
         if (flag.includes('xylophone')) {
-            musicalEffect();
+            xylophoneEffect();
         }
     }
 });

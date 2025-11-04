@@ -146,14 +146,14 @@ document.addEventListener("keydown", function(e) {
             if (input == '') {
                 image.classList.remove("wasteAnimation");
                 image.classList.remove("saveAnimation");
-                const wordList = words[e.key];
+                const wordList = words[e.key.toLowerCase()];
                 currentword = wordList[Math.floor(Math.random() * wordList.length)]; // 키값으로 단어 찾음
                 console.log('currentword: ', currentword);
                 image.src = './image/' + currentword + '.png';
             }
             cut();
             if (currentword.startsWith(input)) {
-                if (currentword[input.length] === e.key) {
+                if (currentword[input.length] === e.key.toLowerCase()) {
                     input = input + e.key.toLowerCase();
                     addDomElement(result, "p", { text: e.key.toLowerCase() });
                     chop.currentTime = 0;
