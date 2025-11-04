@@ -77,5 +77,51 @@ button:hover {
 }
 
 #images {
-    
+    width: 540px;
+    overflow: visible;
+    position: relative;
+}
+
+#bat {
+    position: fixed;
+    animation: fly 1.5s ease-in-out forwards;
+}
+
+#bats {
+    position: fixed;
+    width: 100%;
+    animation: fly_bats 2s ease-out forwards;
+}
+
+#note {
+    position: fixed;
+    animation: fly 1.5s ease-in-out forwards;
+}
+
+@keyframes fly_bats {
+    0% {
+        transform: translate(100%, 100%);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-100%, -100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-130%, -130%);
+        opacity: 0;
+    }
+}
+
+@keyframes fly {
+    0% {
+        transform: scale(0%, 0%) translate(0%, 0%);
+        opacity: 0%;
+    } 30% {
+        transform: scale(100%, 100%) translate(0%, -100%);
+        opacity: 100%;
+    } 100% {
+        transform: scale(100%, 100%) translate(0%, 60%);
+        opacity: 0%;
+    }
 }

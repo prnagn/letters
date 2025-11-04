@@ -28,21 +28,30 @@ h1 {
 
 #knife {
     position: fixed;
-    left: 30%;
-    top: 30%;
+    left: 40%;
+    top: 40%;
     transform-origin: 0 50%;
 }
 
 #cuttingBoard {
     position: fixed;
+    left: 50%;
+    top: 60%;
+    transform: translate(-60%, -50%);
 }
 
 #trash {
     position: fixed;
+    left: 10%;
+    top: 50%;
+    transform: translate(0%, -15%);
 }
 
 #bowl {
     position: fixed;
+    left: 90%;
+    top: 50%;
+    transform: translate(-100%, -20%);
 }
 
 #image {
@@ -77,17 +86,15 @@ h1 {
 
 #saving {
     position: fixed;
-    left: 0%;
-    top: 0%;
-    background-color: white;
+    left: 91%;
+    top: 60%;
+    transform: translate(0%, 0%);
     display: flex;
     flex-direction: column-reverse;
-    justify-self: center;
-    align-items: center;
     
-    font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
+    font-size: 20px;
+    font-family: "Memoment Cat";
+    color: #4B2E14;
 }
 
 @keyframes chopping {
@@ -112,17 +119,27 @@ h1 {
 
 @keyframes save {
     0% {
-        transform: translate(-50%, -50%) translate(0%, 0%);
+        transform: translate(-50%, -50%) translate(0%, 0%) scale(100%, 100%);
+        opacity: 100%;
+    } 80% {
+        transform: translate(-50%, -50%) translate(130%, 10%) scale(50%, 50%);
+        opacity: 100%;
     } 100% {
-        transform: translate(-50%, -50%) translate(150%, 0%);
+        transform: translate(-50%, -50%) translate(120%, 40%) scale(0%, 0%);
+        opacity: 0%;
     }
 }
 
 @keyframes waste {
     0% {
-        transform: translate(-50%, -50%) translate(0%, 0%);
+        transform: translate(-50%, -50%) translate(0%, 0%) scale(100%, 100%);
+        opacity: 100%;
+    } 70% {
+        transform: translate(-50%, -50%) translate(-160%, 0%) scale(50%, 50%);
+        opacity: 100%;
     } 100% {
-        transform: translate(-50%, -50%) translate(-150%, 0%);
+        transform: translate(-50%, -50%) translate(-200%, -5%) scale(0%, 0%);
+        opacity: 0%;
     }
 }
 

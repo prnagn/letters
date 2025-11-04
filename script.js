@@ -1,29 +1,30 @@
 const words = {
-    'a': 'avocado',
-    'b': 'broccoli',
-    'c': 'carrot',
-    'd': 'durian',
-    'e': 'eggplant',
-    'f': 'fly',
-    'g': 'garlic',
-    'h': 'halloween',
-    'i': 'ice',
-    'j': 'jalapeno',
-    'l': 'lemon',
-    'm': 'mushroom',
-    'n': 'nut',
-    'o': 'onion',
-    'p': 'peach',
-    'q': 'quince',
-    'r': 'radish',
-    's': 'strawberry',
-    't': 'tomato',
-    'u': 'umbrella',
-    'v': 'violin',
-    'w': 'watermelon',
-    'x': 'xylophone',
-    'y': 'yee',
-    'z': 'zero',
+    'a': ['avocado', 'apple'],
+    'b': ['broccoli'],
+    'c': ['carrot'],
+    'd': ['durian'],
+    'e': ['eggplant'],
+    'f': ['fly'],
+    'g': ['garlic'],
+    'h': ['halloween'],
+    'i': ['ice'],
+    'j': ['jalapeno'],
+    'k': ['kiwi'],
+    'l': ['lemon'],
+    'm': ['mushroom'],
+    'n': ['nut'],
+    'o': ['onion'],
+    'p': ['peach', 'pumpkin'],
+    'q': ['quince'],
+    'r': ['radish'],
+    's': ['strawberry'],
+    't': ['tomato'],
+    'u': ['umbrella'],
+    'v': ['violin'],
+    'w': ['watermelon'],
+    'x': ['xylophone'],
+    'y': ['yellow'],
+    'z': ['zero'],
 };
 
 /** get DOM elements */
@@ -99,7 +100,6 @@ document.addEventListener("keydown", function(e) {
     console.log("Key pressed: ", e.key);
     switch (e.key) {
         case "Backspace":
-            // 음식을 버림
             wasteVeg();
             input = '';
             while (result.firstChild) {
@@ -115,7 +115,10 @@ document.addEventListener("keydown", function(e) {
                     result.removeChild(result.firstChild);
                 }
                 save.push(currentword);
-                addDomElement(saving, 'p', {text: currentword});
+                addDomElement(saving, 'p', {
+                    text: currentword,
+                    style: 'margin: 0;'
+                });
                 console.log(save);
             } else {
                 cut();
@@ -141,7 +144,10 @@ document.addEventListener("keydown", function(e) {
             break;
         default:
             if (input == '') {
-                currentword = words[e.key]; // 키값으로 단어 찾음
+                image.classList.remove("wasteAnimation");
+                image.classList.remove("saveAnimation");
+                const wordList = words[e.key];
+                currentword = wordList[Math.floor(Math.random() * wordList.length)]; // 키값으로 단어 찾음
                 console.log('currentword: ', currentword);
                 image.src = './image/' + currentword + '.png';
             }
@@ -150,10 +156,10 @@ document.addEventListener("keydown", function(e) {
                 if (currentword[input.length] === e.key) {
                     input = input + e.key.toLowerCase();
                     addDomElement(result, "p", { text: e.key.toLowerCase() });
+                    chop.currentTime = 0;
                     chop.play();
                     correctness += 1;
                 } else {
-                    // 헛손질
                     incorrecness += 1;
                 }
             }
@@ -168,7 +174,7 @@ const countdown = setInterval(() => {
     if (time < 0) {
         clearInterval(countdown);
         timer.textContent = 'Time over';
-        if (!save) {
+        if (save.length == 0) {
             save = ['null'];
         }
         sessionStorage.setItem('savingVeg', JSON.stringify(save));
